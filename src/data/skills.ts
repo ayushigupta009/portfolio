@@ -1,12 +1,12 @@
 import type { Skill } from "@/types";
 
 export const skills: Skill[] = [
-  { name: "HTML & CSS", level: 96 },
-  { name: "JavaScript / TypeScript", level: 92 },
-  { name: "React & Next.js", level: 94 },
-  { name: "Tailwind CSS", level: 95 },
-  { name: "UI / UX Design", level: 88 },
-  { name: "Framer Motion", level: 85 },
-  { name: "Node.js", level: 80 },
-  { name: "Figma", level: 90 },
+  { name: "Flutter & Dart", level: 92 },
+  { name: "React Native", level: 90 },
+  { name: "React.js & Next.js", level: 90 },
+  { name: "Kotlin (Android)", level: 85 },
+  { name: "State Management (GetX / BLoC)", level: 88 },
+  { name: "Firebase & REST APIs", level: 87 },
+  { name: "HTML, CSS & JavaScript", level: 93 },
+  { name: "Git & GitHub", level: 90 },
 ];

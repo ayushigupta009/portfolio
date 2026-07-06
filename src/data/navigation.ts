@@ -8,13 +8,7 @@ import {
 } from "lucide-react";
 import type { NavItem, SocialLink } from "@/types";
 import { siteConfig } from "@/config/site";
-import {
-  GithubIcon,
-  LinkedinIcon,
-  TwitterIcon,
-  DribbbleIcon,
-  InstagramIcon,
-} from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "#home", icon: Home },
@@ -26,9 +20,12 @@ export const navItems: NavItem[] = [
 ];
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: siteConfig.links.github, icon: GithubIcon },
   { label: "LinkedIn", href: siteConfig.links.linkedin, icon: LinkedinIcon },
-  { label: "Twitter", href: siteConfig.links.twitter, icon: TwitterIcon },
-  { label: "Dribbble", href: siteConfig.links.dribbble, icon: DribbbleIcon },
-  { label: "Instagram", href: siteConfig.links.instagram, icon: InstagramIcon },
+  { label: "GitHub", href: siteConfig.links.github, icon: GithubIcon },
+];
+
+/** Footer social links — same as above plus a direct email link. */
+export const footerSocialLinks: SocialLink[] = [
+  ...socialLinks,
+  { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
 ];

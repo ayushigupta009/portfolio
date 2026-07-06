@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import { footerSocialLinks } from "@/data/navigation";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export function Footer() {
@@ -22,7 +23,7 @@ export function Footer() {
             </p>
           </div>
 
-          <SocialLinks />
+          <SocialLinks links={footerSocialLinks} />
         </div>
 
         {/* Divider + centered copyright */}

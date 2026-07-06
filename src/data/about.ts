@@ -1,3 +1,3 @@
 export const aboutParagraphs: string[] = [
-  "Hi, I am an enthusiastic Front-End Developer & UI/UX Designer. I can design & build your website exactly as you want. I have three years of experience in Web Development as well as UI/UX designing. Now I am able to design your website or application.",
+  "Hi, I'm a software engineer with expertise in cross-platform mobile and web applications. I work with Flutter, React Native, Kotlin, and modern web technologies to build scalable, high-performance products. With hands-on experience across web and mobile development, I turn ideas into apps that are fast, reliable, and a joy to use.",
 ];
