@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#994FF5"/>
+      <stop offset="1" stop-color="#453DB1"/>
+    </linearGradient>
+    <radialGradient id="r4" cx="0.2" cy="0.1" r="0.9">
+      <stop stop-color="#FFC41F" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FFC41F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="#0A1524"/>
+  <rect width="800" height="600" fill="url(#g4)" opacity="0.9"/>
+  <rect width="800" height="600" fill="url(#r4)"/>
+  <text x="50%" y="52%" text-anchor="middle" font-family="Sora, sans-serif" font-size="42" font-weight="700" fill="#ffffff">Verde Brand</text>
+</svg>
