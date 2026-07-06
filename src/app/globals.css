@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* -------------------------------------------------------------------------- */
+/*  Design tokens — Nichol-inspired dark theme                                 */
+/* -------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces */
+  --color-background: #050c17;
+  --color-surface: #0a1524;
+  --color-surface-2: #0e1b2e;
+  --color-border: #1c2a40;
+
+  /* Text */
+  --color-foreground: #e6ebf5;
+  --color-muted: #9aa4bf;
+  --color-slate: #7780a1;
+
+  /* Brand accents */
+  --color-primary: #994ff5; /* purple  */
+  --color-primary-600: #7c3aed;
+  --color-secondary: #ffc41f; /* gold    */
+  --color-accent-blue: #3b82f6;
+  --color-indigo: #453db1;
+
+  /* Typography */
+  --font-sans: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius */
+  --radius-card: 1rem;
+
+  /* Custom easing + keyframes */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* -------------------------------------------------------------------------- */
+/*  Light theme — activated by data-theme="light" on <html> (default: dark)    */
+/* -------------------------------------------------------------------------- */
+:root[data-theme="light"] {
+  /* Surfaces */
+  --color-background: #ffffff;
+  --color-surface: #f5f7fb;
+  --color-surface-2: #eef1f7;
+  --color-border: #e3e7f0;
+
+  /* Text */
+  --color-foreground: #0e1626;
+  --color-muted: #55607a;
+  --color-slate: #8a93ad;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base                                                                       */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+    color: #fff;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-slate);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Utilities                                                                  */
+/* -------------------------------------------------------------------------- */
+@layer utilities {
+  .container-px {
+    padding-inline: 1.25rem;
+  }
+
+  /* Purple → gold gradient text used for headings/accents */
+  .text-gradient {
+    background-image: linear-gradient(
+      92deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Subtle glass card surface */
+  .glass {
+    background: color-mix(in srgb, var(--color-surface) 70%, transparent);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+  }
+
+  /* Radial glow blobs behind sections */
+  .glow-primary {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-primary) 55%, transparent) 0%,
+      transparent 70%
+    );
+  }
+  .glow-secondary {
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-secondary) 45%, transparent) 0%,
+      transparent 70%
+    );
+  }
 }
