@@ -1,18 +1,24 @@
 import { socialLinks } from "@/data/navigation";
+import type { SocialLink } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface SocialLinksProps {
   className?: string;
   iconClassName?: string;
+  links?: SocialLink[];
 }
 
 /**
  * Row of social media icon links.
  */
-export function SocialLinks({ className, iconClassName }: SocialLinksProps) {
+export function SocialLinks({
+  className,
+  iconClassName,
+  links = socialLinks,
+}: SocialLinksProps) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      {socialLinks.map(({ label, href, icon: Icon }) => (
+      {links.map(({ label, href, icon: Icon }) => (
         <a
           key={label}
           href={href}

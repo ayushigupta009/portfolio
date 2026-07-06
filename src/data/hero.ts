@@ -4,7 +4,7 @@
  */
 export const heroContent = {
   greeting: "Hi! I'm Ayushi Gupta",
-  role: "Creative Developer & UI/UX Designer",
+  role: "Software Engineer",
   description:
-    "I craft clean, high-performance web experiences that blend thoughtful design with solid engineering — turning ideas into products people love to use.",
+    "I build cross-platform mobile and web applications with Flutter, React Native, Kotlin and modern web technologies — focused on scalable, high-performance solutions and great user experience.",
 } as const;
