@@ -14,7 +14,7 @@ export const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "#home", icon: Home },
   { id: "about", label: "About", href: "#about", icon: User },
   { id: "skills", label: "Skills", href: "#skills", icon: Cpu },
-  { id: "resume", label: "Resume", href: "#resume", icon: GraduationCap },
+  { id: "resume", label: "Experience", href: "#resume", icon: GraduationCap },
   { id: "portfolio", label: "Portfolio", href: "#portfolio", icon: FolderKanban },
   { id: "contact", label: "Contact", href: "#contact", icon: Mail },
 ];

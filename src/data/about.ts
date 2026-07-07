@@ -1,3 +1,4 @@
 export const aboutParagraphs: string[] = [
-  "Hi, I'm a software engineer with expertise in cross-platform mobile and web applications. I work with Flutter, React Native, Kotlin, and modern web technologies to build scalable, high-performance products. With hands-on experience across web and mobile development, I turn ideas into apps that are fast, reliable, and a joy to use.",
+  "My journey in software began with a curiosity for how apps come to life — and grew into a career spanning mobile and web development across startups and product teams. Along the way I've shipped features end to end, collaborated closely with designers, and learned to write code that stays maintainable as products scale.",
+  "I care about the details that make software feel effortless — turning complex problems into clean, dependable solutions across mobile and web.",
 ];

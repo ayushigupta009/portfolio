@@ -3,7 +3,7 @@
  */
 export const siteConfig = {
   name: "Ayushi Gupta",
-  title: "Ayushi Gupta — Software Engineer",
+  title: "Ayushi Gupta — Software Developer",
   description:
     "Personal portfolio of Ayushi Gupta, a software developer building cross-platform mobile and web applications with Flutter, React Native, and modern web technologies.",
   url: "https://ayushi-portfolio.vercel.app",
@@ -17,9 +17,6 @@ export const siteConfig = {
   links: {
     github: "https://github.com/ayushigupta009",
     linkedin: "https://www.linkedin.com/in/ayushi-gupta09",
-    twitter: "https://twitter.com/",
-    dribbble: "https://dribbble.com/",
-    instagram: "https://instagram.com/",
   },
 } as const;
 

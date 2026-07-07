@@ -16,9 +16,10 @@ export interface SocialLink {
   icon: IconType;
 }
 
-export interface Skill {
-  name: string;
-  level: number; // 0 - 100
+export interface SkillGroup {
+  category: string;
+  icon: IconType;
+  skills: string[];
 }
 
 export type ResumeKind = "education" | "experience";
