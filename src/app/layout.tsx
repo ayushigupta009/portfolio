@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Sora } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
@@ -58,15 +59,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${sora.variable} scroll-smooth`}
     >
-      <head>
-        {/* Apply the saved theme before paint to avoid a flash. Default dark. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}`,
-          }}
-        />
-      </head>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        {/* Apply the saved theme before paint to avoid a flash. Default dark. */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}`}
+        </Script>
         <ThemeToggle />
         {children}
       </body>

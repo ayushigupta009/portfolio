@@ -13,10 +13,10 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 export const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "#home", icon: Home },
   { id: "about", label: "About", href: "#about", icon: User },
+  { id: "contributions", label: "Contributions", href: "#contributions", icon: GithubIcon },
   { id: "skills", label: "Skills", href: "#skills", icon: Cpu },
   { id: "resume", label: "Experience", href: "#resume", icon: GraduationCap },
   { id: "portfolio", label: "Portfolio", href: "#portfolio", icon: FolderKanban },
-  { id: "contact", label: "Contact", href: "#contact", icon: Mail },
 ];
 
 export const socialLinks: SocialLink[] = [
