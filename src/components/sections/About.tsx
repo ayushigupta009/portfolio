@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
 import { aboutParagraphs } from "@/data/about";
 import { siteConfig } from "@/config/site";
 import { Section } from "@/components/ui/Section";
@@ -11,70 +10,154 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 export function About() {
   return (
     <Section id="about">
-      <div className="grid items-center gap-14 lg:grid-cols-2">
-        {/* Visual — white-framed image with a gradient shape offset behind */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="relative mx-auto w-full max-w-md"
+      <div className="relative mt-24">
+        {/* Decorative outline triangle, top-right */}
+        <motion.svg
+          width="70"
+          height="70"
+          viewBox="0 0 70 70"
+          fill="none"
+          stroke="#8a86c9"
+          strokeWidth="2"
+          animate={{ rotate: [0, 360], y: [0, -10, 0] }}
+          transition={{
+            rotate: { duration: 18, ease: "linear", repeat: Infinity },
+            y: { duration: 5, ease: "easeInOut", repeat: Infinity },
+          }}
+          className="pointer-events-none absolute -top-6 right-2 hidden opacity-70 lg:block"
         >
-          {/* gradient ring accent, top-right */}
-          <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-[linear-gradient(135deg,#f0bf37,#d6489a,#8d47e5)] opacity-80 blur-[1px]" />
+          <polygon points="35,8 60,58 10,52" strokeLinejoin="round" />
+        </motion.svg>
 
-          {/* gradient shape offset down-left, peeking out behind the image */}
-          <div className="absolute inset-0 -translate-x-5 translate-y-6 rounded-[2.5rem] bg-[linear-gradient(150deg,#f0bf37_0%,#e29e6e_35%,#d6489a_68%,#8d47e5_100%)]" />
-
-          {/* white-framed image on top */}
-          <div className="relative overflow-hidden rounded-[2rem] border-[6px] border-white bg-white shadow-2xl">
-            <Image
-              src="/ayushi.png"
-              alt={siteConfig.name}
-              width={846}
-              height={1686}
-              className="aspect-[4/5] h-full w-full rounded-[1.5rem] object-cover object-top"
-            />
-          </div>
-        </motion.div>
-
-        {/* Copy */}
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-          className="flex flex-col items-start gap-6"
+        {/* Decorative dotted triangle, bottom-right */}
+        <motion.svg
+          width="130"
+          height="118"
+          viewBox="0 0 130 118"
+          animate={{ y: [0, 14, 0], rotate: [0, -6, 0] }}
+          transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
+          className="pointer-events-none absolute -bottom-12 right-0 hidden lg:block"
         >
-          <motion.h2
-            variants={fadeUp}
-            className="text-4xl font-extrabold text-foreground sm:text-5xl"
-          >
-            About{" "}
-            <span className="bg-[linear-gradient(90deg,#d6489a,#ef8f3c)] bg-clip-text text-transparent">
-              Me
-            </span>
-          </motion.h2>
-
-          {aboutParagraphs.map((p, i) => (
-            <motion.p
-              key={i}
-              variants={fadeUp}
-              className="max-w-xl leading-loose text-muted"
+          <defs>
+            <linearGradient id="tri-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#f0bf37" />
+              <stop offset="1" stopColor="#e0468f" />
+            </linearGradient>
+            <pattern
+              id="tri-dots"
+              width="11"
+              height="11"
+              patternUnits="userSpaceOnUse"
             >
-              {p}
-            </motion.p>
-          ))}
+              <circle
+                cx="2"
+                cy="2"
+                r="1.4"
+                fill="var(--color-background)"
+                opacity="0.55"
+              />
+            </pattern>
+          </defs>
+          <polygon points="130,0 130,118 22,118" fill="url(#tri-grad)" />
+          <polygon points="130,0 130,118 22,118" fill="url(#tri-dots)" />
+        </motion.svg>
 
-          <motion.a
+        <div className="grid items-center gap-14 lg:grid-cols-2">
+          {/* Visual */}
+          <motion.div
             variants={fadeUp}
-            href={siteConfig.resumeUrl}
-            className="mt-2 inline-flex items-center gap-2 rounded-md bg-[linear-gradient(90deg,#d6489a,#ef8f3c)] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_12px_30px_-10px_color-mix(in_srgb,#d6489a_80%,transparent)] transition-all duration-300 hover:opacity-90"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="relative mx-auto w-full max-w-sm"
           >
-            <Download className="h-4 w-4" />
-            Download CV
-          </motion.a>
-        </motion.div>
+            {/* gradient ring, top-right, behind the image */}
+            <motion.div
+              animate={{ y: [0, -12, 0], rotate: [0, 6, 0] }}
+              transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
+              className="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-[linear-gradient(150deg,#f2a13e_0%,#e0468f_45%,#c356c9cc_72%,#c356c926_100%)]"
+            >
+              <div className="absolute inset-[26px] rounded-full bg-background" />
+            </motion.div>
+
+            {/* gradient rounded square, smaller, anchored bottom-left, peeking out */}
+            <motion.div
+              animate={{ y: [0, 10, 0], rotate: [0, -4, 0] }}
+              transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
+              className="absolute bottom-0 left-0 h-[82%] w-[82%] -translate-x-6 translate-y-6 rounded-[2.25rem] bg-[linear-gradient(145deg,#f5c33a_0%,#ef8f43_30%,#e14b86_65%,#c356c9_100%)]"
+            />
+
+            {/* white-framed image on top */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="relative overflow-hidden rounded-[2.25rem] rounded-tr-[9.5rem] border-[7px] border-white bg-white shadow-2xl"
+            >
+              <Image
+                src="/ayushi.png"
+                alt={siteConfig.name}
+                width={846}
+                height={1686}
+                className="aspect-[4/5] h-full w-full rounded-[1.4rem] rounded-tr-[3.8rem] object-cover object-top"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* Copy */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="flex flex-col items-start gap-6"
+          >
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl font-extrabold text-foreground sm:text-5xl"
+            >
+              About{" "}
+              <span className="bg-[linear-gradient(90deg,#e0468f,#f0913c)] bg-clip-text text-transparent">
+                Me
+              </span>
+            </motion.h2>
+
+            {aboutParagraphs.map((p, i) => (
+              <motion.p
+                key={i}
+                variants={fadeUp}
+                className="max-w-xl leading-loose text-muted"
+              >
+                {p}
+              </motion.p>
+            ))}
+
+            {/* Highlight stats */}
+            <motion.div
+              variants={fadeUp}
+              className="-mt-2 grid w-full max-w-xl grid-cols-3 gap-4"
+            >
+              {[
+                { value: "2.8+", label: "Years of Experience" },
+                { value: "3", label: "Companies" },
+                { value: "15+", label: "Projects Shipped" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-2xl border border-border bg-surface/60 p-5 text-center"
+                >
+                  <div className="bg-[linear-gradient(90deg,#e0468f,#f0913c)] bg-clip-text text-3xl font-extrabold text-transparent sm:text-4xl">
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-xs font-medium text-muted sm:text-sm">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </Section>
   );

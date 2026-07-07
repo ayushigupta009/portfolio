@@ -37,7 +37,7 @@ export function Navbar() {
         scrolled ? "bg-background/90 backdrop-blur-xl" : "bg-background",
       )}
     >
-      <nav className="flex h-20 items-center justify-between px-8 sm:px-15 lg:h-[104px] lg:px-14">
+      <nav className="flex h-20 items-center justify-between px-8 sm:px-15 lg:h-[104px] lg:px-24">
         {/* Logo */}
         <a href="#home" className="group flex items-center gap-3">
           <svg
