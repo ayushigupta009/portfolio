@@ -163,7 +163,7 @@ export function Hero() {
                   width={846}
                   height={1686}
                   priority
-                  className="h-auto max-h-[600px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)] md:max-h-[730px] lg:max-h-[calc(100vh-24px)]"
+                  className="h-auto max-h-[600px] w-auto max-w-full object-contain object-bottom drop-shadow-[0_25px_60px_var(--color-shadow)] md:max-h-[730px] lg:max-h-[calc(100vh-24px)]"
                 />
               </motion.div>
             {/*
@@ -225,10 +225,10 @@ export function Hero() {
                     delay: 0.9 + i * 0.15,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="relative flex items-center rounded-full border border-primary/35 bg-surface/80 p-1.5 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6),0_0_22px_-6px_color-mix(in_srgb,var(--color-primary)_60%,transparent)] backdrop-blur"
+                  className="relative flex items-center rounded-full border border-primary/35 bg-surface/80 p-1.5 shadow-[0_12px_32px_-12px_var(--color-shadow-soft),0_0_22px_-6px_color-mix(in_srgb,var(--color-primary)_60%,transparent)] backdrop-blur"
                 >
                   {/* Inner light catch along the top edge */}
-                  <span className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.14),transparent_55%)] ring-1 ring-inset ring-white/10" />
+                  <span className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.14),transparent_55%)] ring-1 ring-inset ring-foreground/[0.06]" />
 
                   <span
                     className="relative grid h-8 w-8 shrink-0 place-items-center rounded-full text-white sm:h-11 sm:w-11"
