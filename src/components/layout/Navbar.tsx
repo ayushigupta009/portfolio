@@ -16,6 +16,17 @@ export function Navbar() {
   const activeId = useScrollSpy(sectionIds);
 
   useEffect(() => {
+    // Land at the top on reload. Otherwise the browser restores the previous
+    // scroll offset, the navbar mounts in its opaque state, and it clips the
+    // top of the hero portrait that is meant to sit over it.
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    // ...unless the URL points at a specific section.
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -33,11 +44,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b border-border/60 transition-all duration-300",
-        scrolled ? "bg-background/90 backdrop-blur-xl" : "bg-background",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b border-border/60 bg-background/90 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent",
       )}
     >
-      <nav className="flex h-20 items-center justify-between px-10 sm:px-16 lg:h-[104px] lg:px-32">
+      <nav className="flex h-20 items-center justify-between px-7 sm:px-12 lg:h-[104px] lg:px-24">
         {/* Logo */}
         <a href="#home" className="group flex items-center gap-3">
           <svg
@@ -57,30 +70,30 @@ export function Navbar() {
           </span>
         </a>
 
-        {/* Right group: nav links then CTA */}
-        <div className="flex items-center gap-3 lg:gap-10">
-          {/* Desktop nav */}
-          <ul className="hidden items-center gap-8 lg:flex">
-            {navItems.map((item) => {
-              const isActive = activeId === item.id;
-              return (
-                <li key={item.id}>
-                  <a
-                    href={item.href}
-                    className={cn(
-                      "text-[15px] font-semibold transition-colors duration-200",
-                      isActive
-                        ? "text-primary"
-                        : "text-foreground hover:text-primary",
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+        {/* Desktop nav — sits directly beside the logo, left aligned */}
+        <ul className="ml-12 hidden flex-1 items-center gap-8 lg:flex">
+          {navItems.map((item) => {
+            const isActive = activeId === item.id;
+            return (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  className={cn(
+                    "text-[15px] font-semibold transition-colors duration-200",
+                    isActive
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary",
+                  )}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
 
+        {/* Right group: CTA + mobile toggle */}
+        <div className="flex items-center gap-3">
           {/* Desktop CTA */}
           <a
             href="#contact"

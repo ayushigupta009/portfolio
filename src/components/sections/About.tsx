@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { aboutParagraphs } from "@/data/about";
+import { experience } from "@/data/resume";
+import { skillGroups } from "@/data/skills";
 import { siteConfig } from "@/config/site";
 import { Section } from "@/components/ui/Section";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
@@ -139,9 +141,12 @@ export function About() {
               className="-mt-2 grid w-full max-w-xl grid-cols-3 gap-4"
             >
               {[
-                { value: "2.9+", label: "Years of Experience" },
-                { value: "3", label: "Companies" },
-                { value: "15+", label: "Projects Shipped" },
+                { value: String(experience.length), label: "Companies" },
+                {
+                  value: `${skillGroups.reduce((n, g) => n + g.skills.length, 0)}+`,
+                  label: "Technologies",
+                },
+                { value: "3", label: "Platforms Shipped On" },
               ].map((stat) => (
                 <div
                   key={stat.label}

@@ -3,32 +3,38 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { UserRound, SquareChartGantt } from "lucide-react";
-import { heroContent } from "@/data/hero";
+import { heroContent, heroBadges } from "@/data/hero";
 import { footerSocialLinks } from "@/data/navigation";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/Button";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
-/** Floating skill pills around the portrait (like the reference badges). */
-const heroBadges = [
-  { label: "Flutter", dot: "#3b82f6", pos: "left-[8%] top-[24%]", delay: 0 },
-  { label: "React Native", dot: "#994ff5", pos: "right-[0%] top-[38%]", delay: 0.4 },
-  { label: "Next.js", dot: "#ffc41f", pos: "right-[6%] bottom-[20%]", delay: 0.8 },
-  { label: "Kotlin", dot: "#e0468f", pos: "left-[5%] bottom-[26%]", delay: 1.2 },
-] as const;
+/**
+ * Wipe the capsule in from the left, hold it, then wipe it back out to the
+ * right — then repeat.
+ */
+const wipeKeyframes = [
+  "inset(0 100% 0 0)",
+  "inset(0 0% 0 0)",
+  "inset(0 0% 0 0)",
+  "inset(0 0 0 100%)",
+  "inset(0 100% 0 0)",
+];
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-20 lg:pt-[104px]">
-      {/* Full-bleed two-column split: text on the left, gradient panel on the
-          right that bleeds to the top, right and bottom edges */}
-      <div className="grid grid-cols-1 lg:min-h-[calc(100vh-104px)] lg:grid-cols-12 lg:items-stretch">
+    <section id="home" className="relative overflow-hidden">
+      {/* Full-bleed two-column split. The section itself has no top padding —
+          the portrait runs to the very top of the viewport and the (transparent)
+          navbar floats over it, while the left column keeps its own clearance. */}
+      <div className="grid grid-cols-1 lg:min-h-screen lg:grid-cols-12 lg:items-stretch">
           {/* Left column */}
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="flex flex-col justify-center px-10 py-16 sm:px-16 lg:col-span-6 lg:py-24 lg:pl-32 lg:pr-6"
+            className="flex flex-col justify-center px-7 pb-16 pt-36 sm:px-12 lg:col-span-6 lg:translate-y-8 lg:py-24 lg:pl-24 lg:pr-6"
           >
             <motion.span
               variants={fadeUp}
@@ -73,6 +79,10 @@ export function Hero() {
                 Download CV
               </Button>
             </motion.div>
+
+            <motion.div variants={fadeUp} className="mt-8">
+              <SocialLinks links={footerSocialLinks} />
+            </motion.div>
           </motion.div>
 
           {/* Right column — the portrait sits directly on the page background */}
@@ -80,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-            className="relative flex min-h-[500px] items-end justify-center px-6 pr-28 pt-10 lg:col-span-6 lg:min-h-full lg:pl-0 lg:pr-72 lg:pt-0"
+            className="relative flex min-h-[560px] items-end justify-center px-6 pr-20 pt-24 lg:col-span-6 lg:min-h-full lg:pl-0 lg:pr-32 lg:pt-0"
           >
             {/* Multi-colour brand aura behind the portrait so it lifts off the page */}
             <motion.div
@@ -116,9 +126,15 @@ export function Hero() {
               className="relative z-10 flex items-end"
             > */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.92, filter: "blur(10px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, scale: 0.92, filter: "blur(10px)", x: 0 }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)", x: -110 }}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.2,
+                  ease: [0.22, 1, 0.36, 1],
+                  // Slide out of the capsules' way as they unfurl.
+                  x: { duration: 0.7, delay: 2.6, ease: [0.22, 1, 0.36, 1] },
+                }}
                 whileHover={{ scale: 1.03, y: 14 }}
                 className="relative z-10 flex items-end"
               >
@@ -128,58 +144,112 @@ export function Hero() {
                   width={846}
                   height={1686}
                   priority
-                  className="h-auto max-h-[600px] w-auto object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)] md:max-h-[730px] lg:max-h-[calc(100vh-125px)]"
+                  className="h-auto max-h-[600px] w-auto object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.55)] md:max-h-[730px] lg:max-h-[calc(100vh-24px)]"
                 />
               </motion.div>
             {/*
              </motion.div> */}
 
-            {/* Vertical social rail pinned to the right edge of the portrait */}
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="absolute right-10 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-4 lg:right-32"
-            >
+            {/* Skill capsules stacked down the left of the portrait */}
+            {/* <div className="absolute bottom-16 left-0 z-20 hidden flex-col gap-4 lg:flex">
+              {heroBadges.map(({ icon: Icon, label, meta, gradient }, i) => (
+                <motion.div
+                  key={label}
+                  // animate={{ clipPath: wipeKeyframes }}
+                  // transition={{
+                  //   duration: 6,
+                  //   times: [0, 0.16, 0.62, 0.8, 1],
+                  //   ease: "easeInOut",
+                  //   repeat: Infinity,
+                  //   delay: i * 0.7,
+                  // }}
+                  className="flex items-center gap-3 rounded-2xl border border-border bg-surface/80 py-3 pl-3 pr-6 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6)] backdrop-blur"
+                >
+                  <span
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full text-white"
+                    style={{ backgroundImage: gradient }}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block whitespace-nowrap text-sm font-bold text-foreground">
+                      {label}
+                    </span>
+                    <span className="mt-0.5 block whitespace-nowrap text-xs text-muted">
+                      {meta}
+                    </span>
+                  </span>
+                </motion.div>
+              ))}
+            </div> */}
+
+            {/* Info capsules pinned to the right edge of the portrait. Each
+                starts as just its icon, then unfurls leftwards to reveal the
+                text — once, on load. */}
+            <div className="absolute right-7 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-4 lg:right-24 lg:flex">
+              {/* Hairlines top and bottom, centred on the collapsed icon */}
               <motion.span
-                variants={fadeUp}
-                className="h-40 w-px bg-gradient-to-b from-transparent to-primary/60"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1 }}
+                transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: "bottom" }}
+                className="mr-[30px] h-40 w-px bg-gradient-to-b from-transparent to-primary/60"
               />
 
-              {footerSocialLinks.map(({ label, href, icon: Icon }, i) => (
-                <motion.span key={label} variants={fadeUp} className="inline-flex">
-                <motion.a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  whileHover={{ scale: 1.12 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ y: [0, -6, 0] }}
+              {heroBadges.map(({ icon: Icon, label, meta, gradient }, i) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{
-                    y: {
-                      duration: 3.2,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      delay: i * 0.35,
-                    },
+                    duration: 0.45,
+                    delay: 0.9 + i * 0.15,
+                    ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="group relative grid h-11 w-11 place-items-center rounded-full border border-border bg-surface/60 text-muted backdrop-blur transition-colors duration-300 hover:border-transparent hover:text-white"
+                  className="relative flex items-center rounded-full border border-primary/35 bg-surface/80 p-2 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.6),0_0_22px_-6px_color-mix(in_srgb,var(--color-primary)_60%,transparent)] backdrop-blur"
                 >
-                  {/* Gradient fill + glow revealed on hover */}
-                  <span className="absolute inset-0 rounded-full bg-[linear-gradient(135deg,#994ff5,#e0468f,#f0913c)] opacity-0 shadow-[0_10px_30px_-8px_color-mix(in_srgb,var(--color-primary)_85%,transparent)] transition-opacity duration-300 group-hover:opacity-100" />
-                  {/* Pulsing halo so the rail reads as interactive at rest */}
-                  <span className="absolute inset-0 animate-[glow_4s_ease-in-out_infinite] rounded-full ring-1 ring-primary/30" />
-                  <Icon className="relative h-[18px] w-[18px]" />
-                </motion.a>
-                </motion.span>
+                  {/* Inner light catch along the top edge */}
+                  <span className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.14),transparent_55%)] ring-1 ring-inset ring-white/10" />
+
+                  <span
+                    className="relative grid h-11 w-11 shrink-0 place-items-center rounded-full text-white"
+                    style={{ backgroundImage: gradient }}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+
+                  {/* Text unfurls from the right edge, so the card grows leftwards */}
+                  <motion.span
+                    initial={{ width: 0, opacity: 0 }}
+                    animate={{ width: 170, opacity: 1 }}
+                    transition={{
+                      width: {
+                        duration: 0.6,
+                        delay: 2.5 + i * 0.15,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                      opacity: { duration: 0.3, delay: 2.4 + i * 0.15 },
+                    }}
+                    className="relative overflow-hidden"
+                  >
+                    <span className="block whitespace-nowrap px-3 text-sm font-bold text-foreground">
+                      {label}
+                    </span>
+                    <span className="mt-0.5 block whitespace-nowrap px-3 text-xs text-muted">
+                      {meta}
+                    </span>
+                  </motion.span>
+                </motion.div>
               ))}
 
               <motion.span
-                variants={fadeUp}
-                className="h-40 w-px bg-gradient-to-t from-transparent to-secondary/60"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1 }}
+                transition={{ duration: 0.6, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: "top" }}
+                className="mr-[30px] h-40 w-px bg-gradient-to-t from-transparent to-secondary/60"
               />
-            </motion.div>
+            </div>
 
             {/* Floating skill badges around the portrait */}
             {/* {heroBadges.map((badge) => (
