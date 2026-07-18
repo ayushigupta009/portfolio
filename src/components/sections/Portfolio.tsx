@@ -101,7 +101,7 @@ export function Portfolio() {
               </div>
 
               {/* Body */}
-              <div className="p-6">
+              <div className="p-4">
                 <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                   {project.category}
                 </span>

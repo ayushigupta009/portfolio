@@ -30,6 +30,7 @@ export interface ResumeItem {
   title: string;
   organization: string;
   description: string;
+  logo?: string;
 }
 
 export type ProjectCategory = "All" | "Web" | "Mobile" | "UI/UX" | "Branding";

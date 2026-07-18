@@ -11,27 +11,27 @@ import type { SkillGroup } from "@/types";
 /** Skills grouped by domain — from the resume, shown as chips (no percentages). */
 export const skillGroups: SkillGroup[] = [
   {
+    category: "Frontend Development",
+    icon: LayoutTemplate,
+    skills: ["React.js", "Next.js", "JavaScript", "HTML & CSS", "Bootstrap"],
+  },
+  {
     category: "Mobile Development",
     icon: Smartphone,
-    skills: ["Flutter & Dart", "React Native", "Kotlin", "Android Studio", "GetX / BLoC"],
+    skills: ["Flutter & Dart", "React Native", "Kotlin", "Redux Toolkit", "Android Studio", "Medusa.js"],
   },
   {
-    category: "Frontend",
-    icon: LayoutTemplate,
-    skills: ["React.js", "Next.js", "JavaScript", "jQuery", "HTML & CSS", "Bootstrap", "Redux Toolkit"],
-  },
-  {
-    category: "Backend",
+    category: "Backend Development",
     icon: Server,
-    skills: ["Node.js", "ColdFusion", "RESTful APIs", "Medusa.js"],
+    skills: ["Node.js", "RESTful APIs", "Firebase"],
   },
   {
-    category: "Database",
+    category: "Database Management",
     icon: Database,
-    skills: ["Firebase", "MySQL", "PostgreSQL", "SQLite"],
+    skills: ["PostgreSQL", "MySQL", "SQLite"],
   },
   {
-    category: "Services",
+    category: "Cloud & Services",
     icon: Layers,
     skills: ["Firebase Auth", "Cloud Messaging", "Analytics", "Crashlytics"],
   },

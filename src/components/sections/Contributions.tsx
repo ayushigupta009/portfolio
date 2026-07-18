@@ -17,10 +17,14 @@ const THEME = {
 };
 
 export function Contributions() {
+  // The calendar fetches data on the client, so it must not render during SSR
+  // (its markup would differ and cause a hydration mismatch).
+  const [mounted, setMounted] = useState(false);
   // Match the calendar's color scheme to the active site theme.
   const [scheme, setScheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
+    setMounted(true);
     const read = () =>
       setScheme(
         document.documentElement.getAttribute("data-theme") === "light"
@@ -52,14 +56,18 @@ export function Contributions() {
         className="mx-auto mt-12 w-full max-w-6xl overflow-hidden rounded-2xl border border-border bg-surface/60 p-8 sm:p-12"
       >
         <div className="w-full text-foreground [&_svg]:h-auto [&_svg]:w-full">
-          <GitHubCalendar
-            username={GITHUB_USERNAME}
-            colorScheme={scheme}
-            theme={THEME}
-            fontSize={16}
-            blockSize={15}
-            blockMargin={5}
-          />
+          {mounted ? (
+            <GitHubCalendar
+              username={GITHUB_USERNAME}
+              colorScheme={scheme}
+              theme={THEME}
+              fontSize={16}
+              blockSize={15}
+              blockMargin={5}
+            />
+          ) : (
+            <div className="h-[160px] w-full animate-pulse rounded-lg bg-surface-2/60" />
+          )}
         </div>
       </motion.div>
     </Section>

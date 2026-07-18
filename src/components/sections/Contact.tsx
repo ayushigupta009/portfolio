@@ -78,11 +78,6 @@ export function Contact() {
               </motion.div>
             );
           })}
-
-          <motion.div variants={fadeUp} className="mt-2">
-            <p className="mb-3 text-sm text-muted">Find me on</p>
-            <SocialLinks />
-          </motion.div>
         </motion.div>
 
         {/* Form */}
