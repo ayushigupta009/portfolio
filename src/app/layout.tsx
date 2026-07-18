@@ -4,6 +4,7 @@ import { Sora } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { MobileDock } from "@/components/layout/MobileDock";
+import { PageLoader } from "@/components/layout/PageLoader";
 import "./globals.css";
 
 const sora = Sora({
@@ -43,9 +44,8 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  // No `icons` entry on purpose — src/app/icon.svg is picked up by the App
+  // Router file convention, and an explicit entry here would override it.
 };
 
 export default function RootLayout({
@@ -63,6 +63,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {/* Apply the saved theme before paint to avoid a flash. Default dark. */}
         <Script src="/theme-init.js" strategy="beforeInteractive" />
+        <PageLoader />
         <ThemeToggle />
         {children}
         <MobileDock />
