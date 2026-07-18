@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" width="34" height="34">
+  <!-- Same mark as the navbar logo. Colours are hard-coded because a favicon
+       is rendered outside the page, where the theme CSS variables don't exist. -->
+  <g transform="translate(4 2)">
+    <rect x="2" y="6" width="10" height="22" rx="2.5" fill="#994ff5" />
+    <rect x="15" y="2" width="9" height="12" rx="2.5" fill="#994ff5" />
+    <rect x="15" y="16" width="9" height="12" rx="2.5" fill="#ffc41f" />
+  </g>
+</svg>
