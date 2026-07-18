@@ -29,7 +29,7 @@ function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
       ref={cardRef}
       variants={fadeUp}
       onMouseMove={handleMouseMove}
-      className="group relative flex h-50 w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 p-5 transition-colors duration-300 hover:border-primary/40"
+      className="group relative flex min-h-50 w-full flex-col overflow-hidden rounded-2xl border border-border bg-surface/60 p-5 transition-colors duration-300 hover:border-primary/40"
     >
       {/* cursor-tracked spotlight */}
       <motion.div
@@ -48,13 +48,13 @@ function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
 
       <div className="relative flex h-full flex-col">
         <div className="flex items-center justify-between gap-3">
-          <h3 className="text-lg font-bold text-foreground">{group.category}</h3>
+          <h3 className="text-base font-bold text-foreground sm:text-lg">{group.category}</h3>
           <Icon className="h-5 w-5 shrink-0 text-primary/70 transition-colors duration-300 group-hover:text-primary" />
         </div>
 
         <div className="mt-3.5 h-px w-full bg-gradient-to-r from-border via-border to-transparent" />
 
-        <div className="mt-3.5 flex flex-1 flex-wrap content-start gap-2 overflow-hidden">
+        <div className="mt-3.5 flex flex-1 flex-wrap content-start gap-2">
           {group.skills.map((skill) => (
             <span
               key={skill}

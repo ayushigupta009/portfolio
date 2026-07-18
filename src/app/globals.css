@@ -34,6 +34,11 @@
   /* Radius */
   --radius-card: 1rem;
 
+  /* Ambient shadow colour — near-black in dark, a soft violet in light so
+     cards read as lifted instead of smudged. */
+  --color-shadow: rgba(0, 0, 0, 0.55);
+  --color-shadow-soft: rgba(0, 0, 0, 0.6);
+
   /* Custom easing + keyframes */
   --animate-float: float 6s ease-in-out infinite;
   --animate-glow: glow 4s ease-in-out infinite;
@@ -43,16 +48,22 @@
 /*  Light theme — activated by data-theme="light" on <html> (default: dark)    */
 /* -------------------------------------------------------------------------- */
 :root[data-theme="light"] {
-  /* Surfaces */
-  --color-background: #ffffff;
-  --color-surface: #f5f7fb;
-  --color-surface-2: #eef1f7;
-  --color-border: #e3e7f0;
+  /* Surfaces — the page carries a faint brand tint so white cards sit on top
+     of it and read as raised. A pure-white page with near-white cards gave
+     nothing to separate them. */
+  --color-background: #eee9fa;
+  --color-surface: #ffffff;
+  --color-surface-2: #e4dbf7;
+  --color-border: #d5c9f0;
 
   /* Text */
-  --color-foreground: #0e1626;
-  --color-muted: #55607a;
-  --color-slate: #8a93ad;
+  --color-foreground: #170f2e;
+  --color-muted: #574d72;
+  --color-slate: #857aa1;
+
+  /* Shadows tinted with the brand purple rather than flat black */
+  --color-shadow: rgba(48, 24, 96, 0.18);
+  --color-shadow-soft: rgba(48, 24, 96, 0.14);
 }
 
 @keyframes float {
@@ -81,7 +92,51 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    /* Backstop against sideways scroll. `clip` (not `hidden`) is deliberate:
+       `hidden` would make <html> a scroll container and break the
+       scroll-padding-top below plus smooth anchor scrolling. */
+    overflow-x: clip;
+    /* Just clears the fixed navbar (80px mobile, 104px desktop). Section used
+       to add its own scroll-mt-24 on top of this, which double-counted the
+       offset and dropped anchors ~192px too low. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 7rem;
+    }
+  }
+
+  /* Light mode gets soft brand washes anchored to the page corners — a single
+     flat sheet of near-white is what made it look washed out. */
+  :root[data-theme="light"] body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+          ellipse 70% 50% at 0% 0%,
+          color-mix(in srgb, var(--color-primary) 20%, transparent),
+          transparent 65%
+        ),
+      radial-gradient(
+          ellipse 60% 45% at 100% 15%,
+          color-mix(in srgb, var(--color-brand-pink) 16%, transparent),
+          transparent 65%
+        ),
+      radial-gradient(
+          ellipse 75% 40% at 85% 100%,
+          color-mix(in srgb, var(--color-brand-orange) 16%, transparent),
+          transparent 65%
+        ),
+      radial-gradient(
+          ellipse 60% 35% at 10% 85%,
+          color-mix(in srgb, var(--color-secondary) 14%, transparent),
+          transparent 65%
+        );
   }
 
   body {
@@ -89,7 +144,10 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* Only on <body> — overflow on <html> makes it a scroll container, which
+       stops `scroll-padding-top` and smooth anchor scrolling from working. */
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   ::selection {
@@ -117,8 +175,21 @@
 /*  Utilities                                                                  */
 /* -------------------------------------------------------------------------- */
 @layer utilities {
+  /* Matches the navbar/hero/footer gutter so every band shares one edge. */
   .container-px {
-    padding-inline: 1.25rem;
+    padding-inline: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-px {
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-px {
+      padding-inline: 6rem;
+    }
   }
 
   /* Purple → gold gradient text used for headings/accents */
@@ -156,22 +227,22 @@
     background:
       radial-gradient(
           ellipse 78% 38% at 50% 8%,
-          color-mix(in srgb, var(--color-primary) 16%, transparent) 0%,
+          color-mix(in srgb, var(--color-primary) 28%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 82% 40% at 50% 42%,
-          color-mix(in srgb, var(--color-brand-pink) 14%, transparent) 0%,
+          color-mix(in srgb, var(--color-brand-pink) 26%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 80% 36% at 50% 72%,
-          color-mix(in srgb, var(--color-brand-orange) 13%, transparent) 0%,
+          color-mix(in srgb, var(--color-brand-orange) 25%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 72% 32% at 50% 95%,
-          color-mix(in srgb, var(--color-secondary) 15%, transparent) 0%,
+          color-mix(in srgb, var(--color-secondary) 27%, transparent) 0%,
           transparent 75%
         );
   }

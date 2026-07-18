@@ -29,7 +29,7 @@ export function CallToAction() {
       >
         <motion.h2
           variants={fadeUp}
-          className="text-3xl/tight font-bold text-foreground sm:text-4xl/tight md:text-[52px]/tight"
+          className="text-2xl/tight font-bold text-foreground sm:text-4xl/tight md:text-[52px]/tight"
         >
           Have a project in mind?{" "}
           <span className="text-gradient">Let&rsquo;s get to work.</span>{" "}
@@ -45,7 +45,7 @@ export function CallToAction() {
 
         <motion.p
           variants={fadeUp}
-          className="mt-6 max-w-xl leading-loose text-muted"
+          className="mt-6 max-w-xl text-sm leading-loose text-muted sm:text-base"
         >
           Whether it&rsquo;s a full product build, a mobile app, or a quick
           conversation about an idea — I&rsquo;d love to hear about it.
@@ -53,18 +53,18 @@ export function CallToAction() {
 
         <motion.div
           variants={fadeUp}
-          className="mt-10 flex flex-wrap justify-center gap-5"
+          className="mt-10 flex flex-nowrap items-center justify-center gap-3 sm:gap-5"
         >
           <Button
             href={mailComposeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group bg-[linear-gradient(90deg,#994ff5,#e0468f,#f0913c)] hover:opacity-90"
+            className="group shrink-0 whitespace-nowrap bg-[linear-gradient(90deg,#994ff5,#e0468f,#f0913c)] px-4 text-xs hover:opacity-90 sm:px-7 sm:text-sm"
           >
             Say Hello
             <ArrowRight className="h-[18px] w-[18px] transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
-          <Button href="#portfolio" variant="outline">
+          <Button href="#portfolio" variant="outline" className="shrink-0 whitespace-nowrap px-4 text-xs sm:px-7 sm:text-sm">
             My Portfolio
           </Button>
         </motion.div>

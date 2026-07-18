@@ -35,17 +35,17 @@ export function SectionTitle({
         className,
       )}
     >
-      <span className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-primary">
+      <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-primary sm:text-sm">
         <span className="h-px w-6 bg-primary/60" />
         {eyebrow}
       </span>
-      <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+      <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
         {title}
       </h2>
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed text-muted",
+            "max-w-2xl text-sm leading-relaxed text-muted sm:text-base",
             align === "center" && "mx-auto",
           )}
         >

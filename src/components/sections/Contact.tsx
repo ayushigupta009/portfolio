@@ -36,26 +36,26 @@ export function Contact() {
         description="Have a project in mind or just want to say hi? My inbox is always open."
       />
 
-      <div className="mt-14 grid gap-10 lg:grid-cols-5">
+      <div className="mt-10 grid gap-6 sm:mt-14 sm:gap-10 lg:grid-cols-5">
         {/* Info */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="flex flex-col gap-4 lg:col-span-2"
+          className="flex min-w-0 flex-col gap-3 sm:gap-4 lg:col-span-2"
         >
           {contactMethods.map(({ icon: Icon, label, value, href }) => {
             const inner = (
               <>
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/25">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl sm:h-12 sm:w-12 bg-primary/15 text-primary ring-1 ring-primary/25">
                   <Icon className="h-5 w-5" />
                 </span>
                 <span className="min-w-0">
                   <span className="block text-xs uppercase tracking-widest text-muted">
                     {label}
                   </span>
-                  <span className="block truncate font-medium text-foreground">
+                  <span className="block break-words font-medium text-foreground">
                     {value}
                   </span>
                 </span>
@@ -68,12 +68,12 @@ export function Contact() {
                     href={href}
                     target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 rounded-2xl border border-border bg-surface/40 p-4 transition-all duration-300 hover:border-primary/40"
+                    className="flex items-center gap-3 rounded-2xl border border-border bg-surface/40 p-3 transition-all duration-300 hover:border-primary/40 sm:gap-4 sm:p-4"
                   >
                     {inner}
                   </a>
                 ) : (
-                  <div className="flex items-center gap-4 rounded-2xl border border-border bg-surface/40 p-4">
+                  <div className="flex items-center gap-3 rounded-2xl border border-border bg-surface/40 p-3 sm:gap-4 sm:p-4">
                     {inner}
                   </div>
                 )}
@@ -89,9 +89,9 @@ export function Contact() {
           whileInView="visible"
           viewport={viewportOnce}
           onSubmit={handleSubmit}
-          className="glass rounded-2xl p-6 sm:p-8 lg:col-span-3"
+          className="glass w-full min-w-0 rounded-2xl p-3 sm:p-8 lg:col-span-3"
         >
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
             <Field label="Name" name="name" placeholder="Your name" required />
             <Field
               label="Email"
@@ -114,10 +114,10 @@ export function Contact() {
             <textarea
               id="message"
               name="message"
-              rows={5}
+              rows={4}
               required
               placeholder="Tell me about your project..."
-              className="w-full resize-none rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-foreground placeholder:text-slate transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full min-w-0 resize-none rounded-xl border border-border bg-surface/60 px-3 py-2.5 text-sm sm:px-4 sm:py-3 text-foreground placeholder:text-slate transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
 
@@ -157,7 +157,7 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <div>
+    <div className="min-w-0">
       <label
         htmlFor={name}
         className="mb-2 block text-sm font-medium text-foreground"
@@ -170,7 +170,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm text-foreground placeholder:text-slate transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+        className="w-full min-w-0 rounded-xl border border-border bg-surface/60 px-3 py-2.5 text-sm sm:px-4 sm:py-3 text-foreground placeholder:text-slate transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
       />
     </div>
   );
