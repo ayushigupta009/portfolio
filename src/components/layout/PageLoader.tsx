@@ -20,6 +20,9 @@ const SLIDE_AT = 0.95;
 const NAME_AT = 1.35;
 const ROLE_AT = 1.9;
 const HOLD_MS = 2200;
+/** Curtain dissolve, and the pause after it before the page starts moving. */
+const EXIT_MS = 600;
+const SETTLE_MS = 350;
 
 /** Expo-out — long, soft settle. Used for every move so they feel like one. */
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -42,13 +45,14 @@ export function PageLoader() {
   }, []);
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      setDone(true);
-      // Let the sections underneath start their entrances now that they can
-      // actually be seen.
-      markIntroDone();
-    }, HOLD_MS);
-    return () => clearTimeout(t);
+    const lift = setTimeout(() => setDone(true), HOLD_MS);
+    // Hold a beat after the curtain has dissolved before the sections start
+    // moving, so the two don't run into each other.
+    const release = setTimeout(markIntroDone, HOLD_MS + EXIT_MS + SETTLE_MS);
+    return () => {
+      clearTimeout(lift);
+      clearTimeout(release);
+    };
   }, []);
 
   // Hold the page still underneath while the curtain is up.
@@ -68,7 +72,7 @@ export function PageLoader() {
         <motion.div
           key="loader"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          transition={{ duration: EXIT_MS / 1000, ease: "easeInOut" }}
           className="fixed inset-0 z-[100] grid place-items-center bg-background"
         >
           {/* Off-screen twin, only ever used to measure the name. */}
