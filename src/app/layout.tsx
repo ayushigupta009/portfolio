@@ -61,9 +61,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {/* Apply the saved theme before paint to avoid a flash. Default dark. */}
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){}`}
-        </Script>
+        <Script src="/theme-init.js" strategy="beforeInteractive" />
         <ThemeToggle />
         {children}
       </body>

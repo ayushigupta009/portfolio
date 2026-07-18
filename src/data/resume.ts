@@ -8,6 +8,7 @@ export const education: ResumeItem[] = [
     organization: "Shri Shankaracharya Professional University, Bhilai",
     description:
       "Advanced studies in software engineering, application development, and modern computing technologies.",
+    logo: "/images/education/sspu.png",
   },
   {
     kind: "education",
@@ -16,6 +17,7 @@ export const education: ResumeItem[] = [
     organization: "VYT PG Autonomous College, Durg",
     description:
       "Foundation in programming, databases, and web development along with core computer science concepts.",
+    logo: "/images/education/vyt.png",
   },
   {
     kind: "education",
@@ -24,6 +26,7 @@ export const education: ResumeItem[] = [
     organization: "Saraswati Vihar English Medium School, Bhilai, CG",
     description:
       "Completed higher secondary education with 78%, building a strong academic foundation.",
+    logo: "/images/education/svem.png",
   },
 ];
 
@@ -35,6 +38,7 @@ export const experience: ResumeItem[] = [
     organization: "Gim Info Solutions Pvt. Ltd.",
     description:
       "Building cross-platform mobile apps with Flutter and Kotlin — state management with GetX and BLoC, RESTful API and Firebase integration, and App/Play Store publishing.",
+    logo: "/images/experience/gimbooks_logo.jpeg",
   },
   {
     kind: "experience",
@@ -43,6 +47,7 @@ export const experience: ResumeItem[] = [
     organization: "Sthanave Technologies",
     description:
       "Developed responsive web apps with React.js and Next.js, built cross-platform mobile apps with React Native, and shipped enhancements that improved system efficiency.",
+    logo: "/images/experience/sthanave_technologies_logo.jpeg",
   },
   {
     kind: "experience",
@@ -51,5 +56,6 @@ export const experience: ResumeItem[] = [
     organization: "Kandid Technologies",
     description:
       "Built an Employee Management System using HTML, CSS, JavaScript, jQuery, SQL and ColdFusion with interactive features and database interactions.",
+    logo: "/images/experience/kandid_logo.jpeg",
   },
 ];

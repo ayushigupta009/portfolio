@@ -27,7 +27,7 @@ export function Footer() {
         </div>
 
         {/* Divider + centered copyright */}
-        <div className="mt-10 border-t border-border pt-8 text-center">
+        <div className="mt-10 border-t border-border pt-8">
           <p className="text-sm text-muted">
             © {year} {siteConfig.name}. All rights reserved.
           </p>
