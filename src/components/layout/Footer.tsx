@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-border">
-      <div className="mx-auto w-full px-8 py-14 sm:px-12 lg:px-24">
+      <div className="mx-auto w-full px-10 py-14 sm:px-16 lg:px-32">
         {/* Top row: name + tagline on the left, socials on the right */}
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>

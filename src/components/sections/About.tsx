@@ -139,7 +139,7 @@ export function About() {
               className="-mt-2 grid w-full max-w-xl grid-cols-3 gap-4"
             >
               {[
-                { value: "2.8+", label: "Years of Experience" },
+                { value: "2.9+", label: "Years of Experience" },
                 { value: "3", label: "Companies" },
                 { value: "15+", label: "Projects Shipped" },
               ].map((stat) => (

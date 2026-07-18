@@ -19,6 +19,12 @@
   --color-primary: #994ff5; /* purple  */
   --color-primary-600: #7c3aed;
   --color-secondary: #ffc41f; /* gold    */
+
+  /* Brand gradient stops — the purple → pink → orange ramp used across
+     headings, CTAs and the hero glow. */
+  --color-brand-pink: #e0468f;
+  --color-brand-orange: #f0913c;
+
   --color-accent-blue: #3b82f6;
   --color-indigo: #453db1;
 
@@ -142,6 +148,34 @@
       transparent 70%
     );
   }
+  /* Brand aura behind the hero portrait — a vertical ramp: purple at the top,
+     pink through the centre, warm gold pooling at the base. Every lobe is
+     centred on 50% x and wide enough to overlap its neighbours, so the colours
+     read as one continuous wash with no bare patches at the sides. */
+  .glow-brand {
+    background:
+      radial-gradient(
+          ellipse 78% 38% at 50% 8%,
+          color-mix(in srgb, var(--color-primary) 48%, transparent) 0%,
+          transparent 75%
+        ),
+      radial-gradient(
+          ellipse 82% 40% at 50% 42%,
+          color-mix(in srgb, var(--color-brand-pink) 42%, transparent) 0%,
+          transparent 75%
+        ),
+      radial-gradient(
+          ellipse 80% 36% at 50% 72%,
+          color-mix(in srgb, var(--color-brand-orange) 40%, transparent) 0%,
+          transparent 75%
+        ),
+      radial-gradient(
+          ellipse 72% 32% at 50% 95%,
+          color-mix(in srgb, var(--color-secondary) 45%, transparent) 0%,
+          transparent 75%
+        );
+  }
+
   .glow-secondary {
     background: radial-gradient(
       circle,
