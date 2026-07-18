@@ -75,7 +75,7 @@ export function Portfolio() {
 
                 {/* Hover actions */}
                 <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  {project.liveUrl && (
+                  {/* {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
@@ -85,7 +85,7 @@ export function Portfolio() {
                     >
                       <ExternalLink className="h-5 w-5" />
                     </a>
-                  )}
+                  )} */}
                   {project.repoUrl && (
                     <a
                       href={project.repoUrl}

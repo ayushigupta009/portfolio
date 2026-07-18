@@ -7,6 +7,7 @@ import { Skills } from "@/components/sections/Skills";
 import { Resume } from "@/components/sections/Resume";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Contact } from "@/components/sections/Contact";
+import { CallToAction } from "@/components/sections/CallToAction";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <Resume />
         <Portfolio />
         <Contact />
+        <CallToAction />
       </main>
       <Footer />
     </>

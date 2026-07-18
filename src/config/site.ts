@@ -21,3 +21,12 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+/**
+ * Gmail compose URL for the contact address. Preferred over a bare `mailto:`
+ * link, which silently does nothing when the visitor's browser has no mail
+ * handler registered.
+ */
+export const mailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+  siteConfig.email,
+)}`;

@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
-import { siteConfig } from "@/config/site";
+import { siteConfig, mailComposeUrl } from "@/config/site";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -11,7 +11,7 @@ import { Glow } from "@/components/ui/Glow";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 const contactMethods = [
-  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  { icon: Mail, label: "Email", value: siteConfig.email, href: mailComposeUrl },
   { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s/g, "")}` },
   { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined },
 ];
@@ -66,6 +66,8 @@ export function Contact() {
                 {href ? (
                   <a
                     href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
                     className="flex items-center gap-4 rounded-2xl border border-border bg-surface/40 p-4 transition-all duration-300 hover:border-primary/40"
                   >
                     {inner}

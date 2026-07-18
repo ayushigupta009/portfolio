@@ -7,7 +7,7 @@ import {
   Mail,
 } from "lucide-react";
 import type { NavItem, SocialLink } from "@/types";
-import { siteConfig } from "@/config/site";
+import { siteConfig, mailComposeUrl } from "@/config/site";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export const navItems: NavItem[] = [
@@ -24,8 +24,8 @@ export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: siteConfig.links.github, icon: GithubIcon },
 ];
 
-/** Footer social links — same as above plus a direct email link. */
+/** Social links plus a direct email — used by the footer and the hero rail. */
 export const footerSocialLinks: SocialLink[] = [
   ...socialLinks,
-  { label: "Email", href: `mailto:${siteConfig.email}`, icon: Mail },
+  { label: "Email", href: mailComposeUrl, icon: Mail },
 ];
