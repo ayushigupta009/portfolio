@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="relative border-t border-border">
-      <div className="mx-auto w-full px-7 py-14 sm:px-12 lg:px-24">
+      <div className="mx-auto w-full px-7 pb-28 pt-14 sm:px-12 lg:px-24 lg:pb-14">
         {/* Top row: name + tagline on the left, socials on the right */}
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
@@ -17,7 +17,7 @@ export function Footer() {
             >
               {siteConfig.name}
             </a>
-            <p className="mt-2 text-muted">
+            <p className="mt-2 text-sm text-muted sm:text-base">
               Designing with purpose, building with precision — turning ideas
               into experiences people love.
             </p>

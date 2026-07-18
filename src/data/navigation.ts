@@ -1,9 +1,9 @@
 import {
   Home,
-  User,
-  Cpu,
+  UserRound,
+  Code2,
   GraduationCap,
-  FolderKanban,
+  LayoutGrid,
   Mail,
 } from "lucide-react";
 import type { NavItem, SocialLink } from "@/types";
@@ -12,11 +12,11 @@ import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export const navItems: NavItem[] = [
   { id: "home", label: "Home", href: "#home", icon: Home },
-  { id: "about", label: "About", href: "#about", icon: User },
+  { id: "about", label: "About", href: "#about", icon: UserRound },
   { id: "contributions", label: "Contributions", href: "#contributions", icon: GithubIcon },
-  { id: "skills", label: "Skills", href: "#skills", icon: Cpu },
+  { id: "skills", label: "Skills", href: "#skills", icon: Code2 },
   { id: "resume", label: "Experience", href: "#resume", icon: GraduationCap },
-  { id: "portfolio", label: "Portfolio", href: "#portfolio", icon: FolderKanban },
+  { id: "portfolio", label: "Portfolio", href: "#portfolio", icon: LayoutGrid },
 ];
 
 export const socialLinks: SocialLink[] = [

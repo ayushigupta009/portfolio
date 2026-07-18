@@ -12,7 +12,7 @@ import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 export function About() {
   return (
     <Section id="about">
-      <div className="relative mt-24">
+      <div className="relative mt-8 lg:mt-24">
         {/* Decorative outline triangle, top-right */}
         <motion.svg
           width="70"
@@ -71,15 +71,15 @@ export function About() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            className="relative mx-auto w-full max-w-sm"
+            className="relative mx-auto w-full max-w-[250px] sm:max-w-sm"
           >
             {/* gradient ring, top-right, behind the image */}
             <motion.div
               animate={{ y: [0, -12, 0], rotate: [0, 6, 0] }}
               transition={{ duration: 7, ease: "easeInOut", repeat: Infinity }}
-              className="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-[linear-gradient(150deg,#f2a13e_0%,#e0468f_45%,#c356c9cc_72%,#c356c926_100%)]"
+              className="absolute -right-6 -top-6 h-32 w-32 rounded-full sm:-right-12 sm:-top-12 sm:h-48 sm:w-48 bg-[linear-gradient(150deg,#f2a13e_0%,#e0468f_45%,#c356c9cc_72%,#c356c926_100%)]"
             >
-              <div className="absolute inset-[26px] rounded-full bg-background" />
+              <div className="absolute inset-[18px] rounded-full bg-background sm:inset-[26px]" />
             </motion.div>
 
             {/* gradient rounded square, smaller, anchored bottom-left, peeking out */}
@@ -89,13 +89,16 @@ export function About() {
               className="absolute bottom-0 left-0 h-[82%] w-[82%] -translate-x-6 translate-y-6 rounded-[2.25rem] bg-[linear-gradient(145deg,#f5c33a_0%,#ef8f43_30%,#e14b86_65%,#c356c9_100%)]"
             />
 
-            {/* white-framed image on top */}
+            {/* White-framed image on top. `object-top` pins the crop to the very
+                top of the source and the portrait starts right at the hair, so
+                on the smaller mobile frame it reads as cut off — the padding
+                gives it headroom against the white frame. */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative overflow-hidden rounded-[2.25rem] rounded-tr-[9.5rem] border-[7px] border-white bg-white shadow-2xl"
+              className="relative overflow-hidden rounded-[2.25rem] rounded-tr-[9.5rem] border-[7px] border-white bg-white pt-[7%] shadow-2xl sm:pt-0"
             >
               <Image
                 src="/ayushi.png"
@@ -117,7 +120,7 @@ export function About() {
           >
             <motion.h2
               variants={fadeUp}
-              className="text-4xl font-extrabold text-foreground sm:text-5xl"
+              className="text-2xl font-extrabold text-foreground sm:text-4xl md:text-5xl"
             >
               About{" "}
               <span className="bg-[linear-gradient(90deg,#e0468f,#f0913c)] bg-clip-text text-transparent">
@@ -129,7 +132,7 @@ export function About() {
               <motion.p
                 key={i}
                 variants={fadeUp}
-                className="max-w-xl leading-loose text-muted"
+                className="max-w-xl text-sm leading-loose text-muted sm:text-base"
               >
                 {p}
               </motion.p>
@@ -138,7 +141,7 @@ export function About() {
             {/* Highlight stats */}
             <motion.div
               variants={fadeUp}
-              className="-mt-2 grid w-full max-w-xl grid-cols-3 gap-4"
+              className="-mt-2 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4"
             >
               {[
                 { value: String(experience.length), label: "Companies" },
@@ -150,7 +153,7 @@ export function About() {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-border bg-surface/60 p-5 text-center"
+                  className="rounded-2xl border border-border bg-surface/60 p-4 text-center sm:p-5"
                 >
                   <div className="bg-[linear-gradient(90deg,#e0468f,#f0913c)] bg-clip-text text-3xl font-extrabold text-transparent sm:text-4xl">
                     {stat.value}

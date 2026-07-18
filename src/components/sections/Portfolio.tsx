@@ -38,7 +38,7 @@ export function Portfolio() {
             type="button"
             onClick={() => setFilter(cat)}
             className={cn(
-              "rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
+              "min-h-11 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
               filter === cat
                 ? "bg-primary text-white shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--color-primary)_80%,transparent)]"
                 : "border border-border text-muted hover:border-primary/50 hover:text-foreground",
@@ -74,7 +74,7 @@ export function Portfolio() {
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-90" />
 
                 {/* Hover actions */}
-                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-300 lg:opacity-0 lg:group-hover:opacity-100">
                   {/* {project.liveUrl && (
                     <a
                       href={project.liveUrl}
@@ -105,7 +105,7 @@ export function Portfolio() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-primary">
                   {project.category}
                 </span>
-                <h3 className="mt-1 text-lg font-bold text-foreground">
+                <h3 className="mt-1 text-base font-bold text-foreground sm:text-lg">
                   {project.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">

@@ -53,9 +53,12 @@ export function Contributions() {
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
-        className="mx-auto mt-12 w-full max-w-6xl overflow-hidden rounded-2xl border border-border bg-surface/60 p-8 sm:p-12"
+        className="mx-auto mt-12 w-full max-w-6xl overflow-hidden rounded-2xl border border-border bg-surface/60 p-4 sm:p-8 lg:p-12"
       >
-        <div className="w-full text-foreground [&_svg]:h-auto [&_svg]:w-full">
+        {/* Scoped to the calendar's own svg — the legend swatches are svgs too,
+            and stretching those blows out the "Less … More" row. Leaving the
+            width alone keeps the library's built-in horizontal scroll. */}
+        <div className="w-full overflow-x-auto text-foreground">
           {mounted ? (
             <GitHubCalendar
               username={GITHUB_USERNAME}

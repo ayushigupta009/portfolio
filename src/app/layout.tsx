@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Sora } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { MobileDock } from "@/components/layout/MobileDock";
 import "./globals.css";
 
 const sora = Sora({
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Script src="/theme-init.js" strategy="beforeInteractive" />
         <ThemeToggle />
         {children}
+        <MobileDock />
       </body>
     </html>
   );

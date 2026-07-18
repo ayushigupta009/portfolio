@@ -81,7 +81,20 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
+    /* Backstop against sideways scroll. `clip` (not `hidden`) is deliberate:
+       `hidden` would make <html> a scroll container and break the
+       scroll-padding-top below plus smooth anchor scrolling. */
+    overflow-x: clip;
+    /* Just clears the fixed navbar (80px mobile, 104px desktop). Section used
+       to add its own scroll-mt-24 on top of this, which double-counted the
+       offset and dropped anchors ~192px too low. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 7rem;
+    }
   }
 
   body {
@@ -89,7 +102,10 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* Only on <body> — overflow on <html> makes it a scroll container, which
+       stops `scroll-padding-top` and smooth anchor scrolling from working. */
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   ::selection {
@@ -117,8 +133,21 @@
 /*  Utilities                                                                  */
 /* -------------------------------------------------------------------------- */
 @layer utilities {
+  /* Matches the navbar/hero/footer gutter so every band shares one edge. */
   .container-px {
-    padding-inline: 1.25rem;
+    padding-inline: 1.75rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-px {
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-px {
+      padding-inline: 6rem;
+    }
   }
 
   /* Purple → gold gradient text used for headings/accents */
@@ -156,22 +185,22 @@
     background:
       radial-gradient(
           ellipse 78% 38% at 50% 8%,
-          color-mix(in srgb, var(--color-primary) 16%, transparent) 0%,
+          color-mix(in srgb, var(--color-primary) 28%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 82% 40% at 50% 42%,
-          color-mix(in srgb, var(--color-brand-pink) 14%, transparent) 0%,
+          color-mix(in srgb, var(--color-brand-pink) 26%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 80% 36% at 50% 72%,
-          color-mix(in srgb, var(--color-brand-orange) 13%, transparent) 0%,
+          color-mix(in srgb, var(--color-brand-orange) 25%, transparent) 0%,
           transparent 75%
         ),
       radial-gradient(
           ellipse 72% 32% at 50% 95%,
-          color-mix(in srgb, var(--color-secondary) 15%, transparent) 0%,
+          color-mix(in srgb, var(--color-secondary) 27%, transparent) 0%,
           transparent 75%
         );
   }
