@@ -10,8 +10,8 @@ export const siteConfig = {
   author: "Ayushi Gupta",
   role: "Software Developer",
   email: "infoayushigupta09@gmail.com",
-  phone: "+91 99999 99999",
-  location: "Bhilai, India",
+  phone: "+91 9131679576",
+  location: "Bhilai, Chhattisgarh, India",
   availability: "Open to opportunities",
   resumeUrl: "/resume/ayushi-gupta-resume.pdf",
   links: {

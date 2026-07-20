@@ -20,6 +20,7 @@ const SLIDE_AT = 0.95;
 const NAME_AT = 1.35;
 const ROLE_AT = 1.9;
 const HOLD_MS = 2200;
+const AFTER_COMPLETE_DELAY = 1000;
 /** Curtain dissolve, and the pause after it before the page starts moving. */
 const EXIT_MS = 600;
 const SETTLE_MS = 350;
@@ -45,10 +46,14 @@ export function PageLoader() {
   }, []);
 
   useEffect(() => {
-    const lift = setTimeout(() => setDone(true), HOLD_MS);
-    // Hold a beat after the curtain has dissolved before the sections start
-    // moving, so the two don't run into each other.
-    const release = setTimeout(markIntroDone, HOLD_MS + EXIT_MS + SETTLE_MS);
+    const lift = setTimeout(() => {
+      setDone(true);
+    }, HOLD_MS + AFTER_COMPLETE_DELAY);
+
+    const release = setTimeout(() => {
+      markIntroDone();
+    }, HOLD_MS + AFTER_COMPLETE_DELAY + EXIT_MS + SETTLE_MS);
+
     return () => {
       clearTimeout(lift);
       clearTimeout(release);
@@ -72,7 +77,10 @@ export function PageLoader() {
         <motion.div
           key="loader"
           exit={{ opacity: 0 }}
-          transition={{ duration: EXIT_MS / 1000, ease: "easeInOut" }}
+          transition={{
+            duration: (HOLD_MS + AFTER_COMPLETE_DELAY) / 1000,
+            ease: "linear",
+          }}
           className="fixed inset-0 z-[100] grid place-items-center bg-background"
         >
           {/* Off-screen twin, only ever used to measure the name. */}
