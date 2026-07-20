@@ -2,29 +2,55 @@
 
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Mail, BadgeCheck, MapPin, Send, Loader2 } from "lucide-react";
 import { siteConfig, mailComposeUrl } from "@/config/site";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { SocialLinks } from "@/components/ui/SocialLinks";
+import { toast } from "react-toastify";
 import { Glow } from "@/components/ui/Glow";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 const contactMethods = [
   { icon: Mail, label: "Email", value: siteConfig.email, href: mailComposeUrl },
-  { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone.replace(/\s/g, "")}` },
+  { icon: BadgeCheck, label: "Availability", value: siteConfig.availability, href: undefined },
   { icon: MapPin, label: "Location", value: siteConfig.location, href: undefined },
 ];
 
-export function Contact() {
-  const [sent, setSent] = useState(false);
+type Status = "idle" | "sending";
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+export function Contact() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Front-end only demo — wire up to an API route / email service as needed.
-    setSent(true);
-    e.currentTarget.reset();
-    setTimeout(() => setSent(false), 4000);
+    const form = e.currentTarget;
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          Object.fromEntries(new FormData(form).entries()),
+        ),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error ?? "Something went wrong.");
+      }
+
+      form.reset();
+      toast.success(
+        "Thanks! Your message is on its way — I'll get back to you soon.",
+      );
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Something went wrong.",
+      );
+    } finally {
+      setStatus("idle");
+    }
   };
 
   return (
@@ -89,7 +115,7 @@ export function Contact() {
           whileInView="visible"
           viewport={viewportOnce}
           onSubmit={handleSubmit}
-          className="glass w-full min-w-0 rounded-2xl p-3 sm:p-8 lg:col-span-3"
+          className="glass relative w-full min-w-0 rounded-2xl p-3 sm:p-8 lg:col-span-3"
         >
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
             <Field label="Name" name="name" placeholder="Your name" required />
@@ -121,22 +147,35 @@ export function Contact() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_color-mix(in_srgb,var(--color-primary)_70%,transparent)] transition-all duration-300 hover:bg-primary-600 sm:w-auto"
-          >
-            {sent ? (
-              <>
-                <CheckCircle2 className="h-4 w-4" />
-                Message Sent!
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4" />
-                Send Message
-              </>
-            )}
-          </button>
+          {/* Honeypot — hidden from people, catnip for bots. */}
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden
+            className="pointer-events-none absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_-8px_color-mix(in_srgb,var(--color-primary)_70%,transparent)] transition-all duration-300 hover:bg-primary-600 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+            >
+              {status === "sending" ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4" />
+                  Send Message
+                </>
+              )}
+            </button>
+          </div>
         </motion.form>
       </div>
     </Section>

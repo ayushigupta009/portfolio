@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { MobileDock } from "@/components/layout/MobileDock";
 import { PageLoader } from "@/components/layout/PageLoader";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 const sora = Sora({
@@ -67,6 +68,16 @@ export default function RootLayout({
         <ThemeToggle />
         {children}
         <MobileDock />
+        {/* top-center keeps clear of the theme toggle (top-right on mobile)
+            and the floating dock (bottom). */}
+        <ToastContainer
+          position="top-center"
+          autoClose={4000}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+        />
       </body>
     </html>
   );
