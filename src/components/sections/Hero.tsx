@@ -79,7 +79,7 @@ export function Hero() {
               <UserRound className="h-5 w-5 sm:h-[25px] sm:w-[25px]" />
               Hire Me
             </Button>
-            <Button href={siteConfig.resumeUrl} variant="outline" className="shrink-0 whitespace-nowrap px-4 text-xs sm:px-7 sm:text-sm">
+            <Button href={siteConfig.resumeUrl} download={true} variant="outline" className="shrink-0 whitespace-nowrap px-4 text-xs sm:px-7 sm:text-sm">
               <motion.span
                 animate={{ rotate: [-10, 12, -10] }}
                 transition={{ duration: 1.8, ease: "easeInOut", repeat: Infinity }}

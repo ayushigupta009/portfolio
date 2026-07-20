@@ -13,7 +13,7 @@ export const siteConfig = {
   phone: "+91 9131679576",
   location: "Bhilai, Chhattisgarh, India",
   availability: "Open to opportunities",
-  resumeUrl: "/resume/ayushi-gupta-resume.pdf",
+  resumeUrl: "/resume/Ayushi_Gupta_Resume_100726.pdf",
   links: {
     github: "https://github.com/ayushigupta009",
     linkedin: "https://www.linkedin.com/in/ayushi-gupta09",
