@@ -189,7 +189,7 @@ export function Hero() {
                   animate={go ? { width: badgeWidth, opacity: 1 } : {}}
                   transition={{
                     width: {
-                      duration: 1,
+                      duration: 1.05,
                       delay: 1.6 + i * 0.12,
                       ease: [0.22, 1, 0.36, 1],
                     },

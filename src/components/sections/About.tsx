@@ -1,13 +1,38 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { animate, motion, useInView } from "framer-motion";
 import { aboutParagraphs } from "@/data/about";
 import { experience } from "@/data/resume";
 import { skillGroups } from "@/data/skills";
 import { siteConfig } from "@/config/site";
 import { Section } from "@/components/ui/Section";
 import { fadeUp, staggerContainer, viewportOnce } from "@/lib/animations";
+
+/** Counts up from 0 to `value` once the tile scrolls into view. */
+function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(0, value, {
+      duration: 1.6,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [inView, value]);
+
+  return (
+    <span ref={ref}>
+      {display}
+      {suffix}
+    </span>
+  );
+}
 
 export function About() {
   return (
@@ -144,19 +169,20 @@ export function About() {
               className="-mt-2 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4"
             >
               {[
-                { value: String(experience.length), label: "Companies" },
+                { value: experience.length, suffix: "", label: "Companies" },
                 {
-                  value: `${skillGroups.reduce((n, g) => n + g.skills.length, 0)}+`,
+                  value: skillGroups.reduce((n, g) => n + g.skills.length, 0),
+                  suffix: "+",
                   label: "Technologies",
                 },
-                { value: "3", label: "Platforms Shipped On" },
+                { value: 3, suffix: "", label: "Platforms Shipped On" },
               ].map((stat) => (
                 <div
                   key={stat.label}
                   className="rounded-2xl border border-border bg-surface/60 p-4 text-center sm:p-5"
                 >
                   <div className="bg-[linear-gradient(90deg,#e0468f,#f0913c)] bg-clip-text text-3xl font-extrabold text-transparent sm:text-4xl">
-                    {stat.value}
+                    <Counter value={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className="mt-1 text-xs font-medium text-muted sm:text-sm">
                     {stat.label}

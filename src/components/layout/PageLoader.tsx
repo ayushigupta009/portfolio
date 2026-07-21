@@ -19,8 +19,10 @@ const GAP = 16;
 const SLIDE_AT = 0.95;
 const NAME_AT = 1.35;
 const ROLE_AT = 1.9;
-const HOLD_MS = 2200;
-const AFTER_COMPLETE_DELAY = 1000;
+const HOLD_MS = 2600;
+/** Beat after the progress bar tops out before the curtain lifts — kept short
+ * so a full bar dismisses more or less immediately. */
+const AFTER_COMPLETE_DELAY = 250;
 /** Curtain dissolve, and the pause after it before the page starts moving. */
 const EXIT_MS = 600;
 const SETTLE_MS = 350;
@@ -78,7 +80,7 @@ export function PageLoader() {
           key="loader"
           exit={{ opacity: 0 }}
           transition={{
-            duration: (HOLD_MS + AFTER_COMPLETE_DELAY) / 1000,
+            duration: EXIT_MS / 1000,
             ease: "linear",
           }}
           className="fixed inset-0 z-[100] grid place-items-center bg-background"
@@ -143,8 +145,8 @@ export function PageLoader() {
                   initial={{ clipPath: "inset(0 100% 0 0)", opacity: 0 }}
                   animate={{ clipPath: "inset(0 0% 0 0)", opacity: 1 }}
                   transition={{
-                    clipPath: { duration: 0.8, delay: NAME_AT, ease: EASE },
-                    opacity: { duration: 0.25, delay: NAME_AT },
+                    clipPath: { duration: 1.1, delay: NAME_AT, ease: EASE },
+                    opacity: { duration: 0.35, delay: NAME_AT },
                   }}
                   className={nameClass}
                 >
@@ -155,7 +157,7 @@ export function PageLoader() {
               <motion.span
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: ROLE_AT, ease: EASE }}
+                transition={{ duration: 0.85, delay: ROLE_AT, ease: EASE }}
                 className="text-sm tracking-[0.28em] text-muted uppercase sm:text-base"
               >
                 {siteConfig.role}
