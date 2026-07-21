@@ -52,7 +52,7 @@ export function MobileDock() {
       transition={{ duration: 0.5, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-x-4 bottom-4 z-50 lg:hidden"
     >
-      <ul className="flex items-center justify-around rounded-full border border-primary/30 bg-surface/80 px-2 py-1.5 shadow-[0_16px_40px_-12px_var(--color-shadow-soft),0_0_24px_-8px_color-mix(in_srgb,var(--color-primary)_65%,transparent)] ring-1 ring-inset ring-foreground/[0.06] backdrop-blur-xl">
+      <ul className="flex items-center justify-around rounded-full border border-primary/30 bg-surface/40 px-2 py-1.5 shadow-[0_16px_40px_-12px_var(--color-shadow-soft),0_0_24px_-8px_color-mix(in_srgb,var(--color-primary)_65%,transparent)] ring-1 ring-inset ring-foreground/[0.06] backdrop-blur-xl">
         {dockItems.map(({ id, label, href, icon: Icon }) => {
           const isActive = active === id;
           return (
