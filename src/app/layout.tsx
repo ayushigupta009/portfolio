@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { MobileDock } from "@/components/layout/MobileDock";
 import { PageLoader } from "@/components/layout/PageLoader";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sora = Sora({
@@ -78,6 +79,7 @@ export default function RootLayout({
           pauseOnHover
           draggable
         />
+        <Analytics />
       </body>
     </html>
   );
