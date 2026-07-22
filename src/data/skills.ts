@@ -18,7 +18,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Mobile Development",
     icon: Smartphone,
-    skills: ["React Native", "Flutter & Dart", "Kotlin", "Redux Toolkit", "Android Studio"],
+    skills: ["React Native", "Flutter & Dart", "Kotlin", "Swift", "Redux Toolkit", "Android Studio", "Xcode"],
   },
   {
     category: "Backend Development",
