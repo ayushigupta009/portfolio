@@ -12,18 +12,6 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useIntroDone } from "@/hooks/useIntroDone";
 import { staggerContainer, fadeUp } from "@/lib/animations";
 
-/**
- * Wipe the capsule in from the left, hold it, then wipe it back out to the
- * right — then repeat.
- */
-const wipeKeyframes = [
-  "inset(0 100% 0 0)",
-  "inset(0 0% 0 0)",
-  "inset(0 0% 0 0)",
-  "inset(0 0 0 100%)",
-  "inset(0 100% 0 0)",
-];
-
 export function Hero() {
   // Numeric widths keep the capsule unfurl smooth (animating to "auto" makes
   // framer re-measure every frame), so the breakpoints are read in JS instead.

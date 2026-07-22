@@ -20,8 +20,6 @@ export const siteConfig = {
   },
 } as const;
 
-export type SiteConfig = typeof siteConfig;
-
 /**
  * Gmail compose URL for the contact address. Preferred over a bare `mailto:`
  * link, which silently does nothing when the visitor's browser has no mail
