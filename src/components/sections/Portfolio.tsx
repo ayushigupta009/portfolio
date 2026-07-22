@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/icons";
 import { projects, projectCategories } from "@/data/projects";
 import type { ProjectCategory } from "@/types";

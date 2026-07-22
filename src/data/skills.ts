@@ -13,12 +13,12 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Frontend Development",
     icon: LayoutTemplate,
-    skills: ["React.js", "Next.js", "JavaScript", "HTML & CSS", "Bootstrap"],
+    skills: ["React.js", "Next.js", "JavaScript", "HTML", "CSS", "Bootstrap", "Medusa.js"],
   },
   {
     category: "Mobile Development",
     icon: Smartphone,
-    skills: ["Flutter & Dart", "React Native", "Kotlin", "Redux Toolkit", "Android Studio", "Medusa.js"],
+    skills: ["React Native", "Flutter & Dart", "Kotlin", "Redux Toolkit", "Android Studio"],
   },
   {
     category: "Backend Development",

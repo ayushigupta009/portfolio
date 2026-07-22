@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { skillGroups } from "@/data/skills";
+import { SkillLogo } from "@/components/icons/SkillLogo";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Glow } from "@/components/ui/Glow";
@@ -54,12 +55,13 @@ function SkillCard({ group }: { group: (typeof skillGroups)[number] }) {
 
         <div className="mt-3.5 h-px w-full bg-gradient-to-r from-border via-border to-transparent" />
 
-        <div className="mt-3.5 flex flex-1 flex-wrap content-start gap-2">
+        <div className="mt-3.5 flex flex-1 flex-wrap content-start justify-start gap-2">
           {group.skills.map((skill) => (
             <span
               key={skill}
-              className="rounded-full border border-transparent bg-surface-2 px-3 py-1 text-[13px] font-semibold text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent bg-surface-2 py-1 pl-2 pr-3 text-[13px] font-semibold text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
             >
+              <SkillLogo name={skill} className="h-3.5 w-3.5 shrink-0" />
               {skill}
             </span>
           ))}
