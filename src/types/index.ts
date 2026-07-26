@@ -51,6 +51,7 @@ export interface Achievement {
   kind: AchievementKind;
   title: string;
   issuer: string;
+  year: string;
   description: string;
   icon: IconType;
 }

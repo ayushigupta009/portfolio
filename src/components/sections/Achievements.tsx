@@ -28,7 +28,12 @@ function AchievementCard({
         strokeWidth={1}
       />
 
-      <div className="relative flex items-start gap-4">
+      {/* year badge — top right */}
+      <span className="absolute right-5 top-5 rounded-full border border-border bg-surface-2 px-3 py-1 text-xs font-semibold text-muted transition-all duration-300 group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:border-primary group-hover:bg-primary/10 group-hover:text-primary">
+        {achievement.year}
+      </span>
+
+      <div className="relative flex items-start gap-4 pr-16">
         <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-primary">
           <Icon className="h-6 w-6" />
         </span>
@@ -64,7 +69,7 @@ export function Achievements() {
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
-        className="mx-auto mt-14 grid max-w-4xl gap-5"
+        className="mt-14 grid gap-5"
       >
         {achievements.map((achievement) => (
           <AchievementCard key={achievement.title} achievement={achievement} />
