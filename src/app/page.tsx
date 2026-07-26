@@ -6,6 +6,7 @@ import { Contributions } from "@/components/sections/Contributions";
 import { Skills } from "@/components/sections/Skills";
 import { Resume } from "@/components/sections/Resume";
 import { Portfolio } from "@/components/sections/Portfolio";
+import { Achievements } from "@/components/sections/Achievements";
 import { Contact } from "@/components/sections/Contact";
 import { CallToAction } from "@/components/sections/CallToAction";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Skills />
         <Resume />
         <Portfolio />
+        <Achievements />
         <Contact />
         <CallToAction />
       </main>

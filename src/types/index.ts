@@ -45,3 +45,13 @@ export interface Project {
   repoUrl?: string;
 }
 
+export type AchievementKind = "award" | "certification";
+
+export interface Achievement {
+  kind: AchievementKind;
+  title: string;
+  issuer: string;
+  description: string;
+  icon: IconType;
+}
+
