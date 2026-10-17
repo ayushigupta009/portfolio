@@ -16,7 +16,7 @@ export const heroBadges = [
   {
     icon: Code2,
     label: "Software Developer",
-    meta: "2.9+ Years",
+    meta: "3+ Years",
     gradient: "linear-gradient(135deg,#994ff5,#7c3aed)",
   },
   {

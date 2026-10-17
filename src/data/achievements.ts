@@ -3,6 +3,15 @@ import type { Achievement } from "@/types";
 
 export const achievements: Achievement[] = [
   {
+    kind: "certification",
+    title: "Sweet Genius",
+    issuer: "Gimbooks",
+    year: "2026",
+    description:
+      "In grateful recognition of work distinguished by exceptional standards, unwavering dedication, and thoughtful craftsmanship.",
+    icon: BadgeCheck,
+  },
+  {
     kind: "award",
     title: "Rising Star of the Year Award",
     issuer: "Sthanave Technologies",
